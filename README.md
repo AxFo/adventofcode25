@@ -4,4 +4,4 @@ My solutions to the [Advent of Code 2025](https://adventofcode.com/), by [Eric W
 
 ## Instructions
 
-* Python version used: 3.14.4
+* Python version used: 3.13.3
