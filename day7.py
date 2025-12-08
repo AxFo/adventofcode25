@@ -11,16 +11,22 @@ size = len(lines[0])
 
 power = [0] * size
 part_a = 0
+part_b = 0
+
 for line in lines:
     for i, c in enumerate(line):
         if c == "S":
-            power[i] += 1
+            power[i] = 1
+            break
         elif c == "^" and power[i] > 0:
             if i > 0:
-                power[i-1] += 1
+                power[i-1] += power[i]
             if i < size-1:
-                power[i+1] += 1
+                power[i+1] += power[i]
             power[i] = 0
             part_a += 1
+    print(power)
 
-print(part_a)
+part_b = sum(power)
+print("Part A", part_a)
+print("Part B", part_b)
