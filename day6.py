@@ -51,3 +51,41 @@ for i, task in enumerate(tasks):
             result *= num
     part_a += result
 print(part_a)
+
+tasks_b = [ [] for _ in range(num_tasks) ]
+for line in lines:
+    tokens = [ line[i+1:j] for i,j in zip([-1] + columns, columns + [None])]
+    print(tokens)
+    for i, token in enumerate(tokens):
+        length = len(token)
+        if len(tasks_b[i]) == 0:
+            print("length of task", length)
+            for j in range(length):
+                tasks_b[i].append([])
+        try:
+            for j, digit in enumerate(token):
+                if digit == " ":
+                    digit = "0"
+                tasks_b[i][j].append(int(digit))
+        except ValueError:
+            pass
+
+tasks_b = [[ int("".join([ str(n) for n in num ])) for num in task ] for task in tasks_b ]
+
+part_b = 0
+for i, task in enumerate(tasks_b):
+    if operands[i] == "+":
+        result = 0
+        for num in task:
+            while num % 10 == 0:
+                num = int(num / 10)
+            result += num
+    elif operands[i] == "*":
+        result = 1
+        for num in task:
+            while num % 10 == 0:
+                num = int( num / 10 )
+            result *= num
+    print(operands[i], task, "=", result)
+    part_b += result
+print(part_b)
